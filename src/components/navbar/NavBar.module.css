@@ -1,0 +1,142 @@
+.NavBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 70px;
+  width: 100%;
+  /*  background: linear-gradient(180deg, var(--bg) 0%, #d3d8e3 100%); */
+  background-color: var(--bg);
+  border-bottom: 1px solid var(--grey);
+}
+
+.NavIconGroup {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 50px;
+}
+
+.Icon {
+  all: unset;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  margin: 10px 10px;
+  background-color: var(--bg);
+  border-radius: 7px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2),
+    -2px -2px 3px rgba(255, 255, 255, 0.8), inset 2px 2px 3px rgba(0, 0, 0, 0),
+    inset -2px -2px 3px rgba(255, 255, 255, 0);
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  text-align: center;
+}
+
+.Icon:hover {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0), -2px -2px 3px rgba(255, 255, 255, 0),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 3px rgba(255, 255, 255, 0.8);
+}
+
+.ResetIcon {
+  height: 50px;
+  width: 100px;
+  background-color: var(--bg);
+  margin-right: 50px;
+  margin-left: auto;
+  justify-self: flex-end;
+  text-align: center;
+
+  margin-top: 7px;
+  font-size: 1.5em;
+  color: var(--grey);
+}
+
+.ResetIcon:hover {
+  color: var(--red);
+}
+
+.Svg {
+  margin: auto;
+  padding: 6px;
+  width: 40px;
+  height: 40px;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  filter: invert(55%) sepia(15%) saturate(4626%) hue-rotate(155deg)
+    brightness(95%) contrast(100%) grayscale(100%);
+}
+
+.Svg:hover {
+  filter: invert(55%) sepia(15%) saturate(4626%) hue-rotate(155deg)
+    brightness(95%) contrast(100%) grayscale(0%);
+}
+
+.ActiveLink {
+  background-color: var(--blueWeak);
+}
+
+.Me {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.Me a {
+  margin-left: 10px;
+  font-size: 2.5em;
+  color: var(--bgDark);
+  opacity: 0.66;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+}
+
+.Me a:hover {
+  color: var(--grey);
+  cursor: pointer;
+}
+
+.Icon .Tooltip {
+  visibility: hidden;
+  opacity: 0;
+  width: 100px;
+  transform: translate(-15%);
+
+  background-color: var(--bgDark);
+  color: var(--greyDark);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+
+  /* Position the tooltip */
+  position: relative;
+  z-index: 1;
+  top: 30%;
+  left: -15px;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+}
+
+.Tooltip::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%; /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent var(--bgDark) transparent;
+}
+
+.Icon:hover .Tooltip {
+  visibility: visible;
+  opacity: 1;
+}
