@@ -1,0 +1,88 @@
+.Headline {
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  margin-top: 25vh;
+  color: var(--grey);
+  font-size: 3.5em;
+}
+
+.FlexContainer {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.BoxTitle {
+  text-align: center;
+  color: var(--grey);
+  letter-spacing: 0.6px;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+.Box:hover ~ .BoxTitle {
+  color: var(--blue);
+}
+
+.Box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+  background-color: var(--bg);
+  box-shadow: -5px -5px 10px #ffffffb8, 5px 5px 10px rgba(94, 104, 121, 0.445),
+    inset -3px -3px 7px #ffffff00, inset 3px 3px 5px rgba(94, 104, 121, 0);
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+}
+
+.Box:hover {
+  box-shadow: -5px -5px 10px #ffffff00, 5px 5px 10px rgba(94, 104, 121, 0),
+    inset -3px -3px 7px #ffffff22, inset 3px 3px 10px rgba(94, 104, 121, 0.692);
+  cursor: pointer;
+}
+
+.Box .Svg {
+  width: 80%;
+  height: 80%;
+  padding: 10%;
+  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  filter: invert(55%) sepia(15%) saturate(4626%) hue-rotate(155deg)
+    brightness(95%) contrast(100%) grayscale(100%);
+}
+
+.Box .Svg:hover {
+  filter: invert(55%) sepia(15%) saturate(4626%) hue-rotate(155deg)
+    brightness(95%) contrast(100%) grayscale(0%);
+}
+
+.WarningScreenSize {
+  display: none;
+}
+
+@media (max-width: 950px) {
+  .WarningScreenSize {
+    display: block;
+    background-color: var(--red);
+    color: white;
+    margin: auto;
+    margin-top: 100px;
+    width: 600px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 3.1;
+  }
+}
