@@ -7,6 +7,7 @@ import Frontpage from 'pages/frontpage/Frontpage';
 import Sorting from 'pages/sorting/Sorting';
 
 
+
 function App() {
   return (
     <BrowserRouter>
