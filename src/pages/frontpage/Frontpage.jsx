@@ -4,6 +4,7 @@ import classes from './Frontpage.module.css'
 import svgTsp from "svg/destination.svg";
 import svgKnapsack from "svg/backpack.svg";
 import svgSorting from "svg/sort-amount-asc.svg";
+import { Link } from 'react-router-dom';
 
 
 const Frontpage = () => {
@@ -15,26 +16,26 @@ const Frontpage = () => {
 
       <div className={classes.FlexContainer}>
 
-        <div className={classes.FrontBoxContainer}>
+        <Link to={"/travellingsalesman"} className={classes.FrontBoxContainer}>
           <div className={classes.Box}>
             <img src={svgTsp} alt="T" className={classes.Svg} />
           </div>
           <h2 className={classes.BoxTitle} >The Travelling Salesman</h2>
-        </div>
+        </Link>
 
-        <div className={classes.FrontBoxContainer}>
+        <Link to={"/knapsack"} className={classes.FrontBoxContainer}>
           <div className={classes.Box}>
             <img src={svgKnapsack} alt="K" className={classes.Svg} />
           </div>
           <h2 className={classes.BoxTitle} >The Knapsack Problem</h2>
-        </div>
+        </Link>
 
-        <div className={classes.FrontBoxContainer}>
+        <Link to={"/sorting"} className={classes.FrontBoxContainer}>
           <div className={classes.Box}>
             <img src={svgSorting} alt="S" className={classes.Svg} />
           </div>
           <h2 className={classes.BoxTitle} >Sorting Algorithms</h2>
-        </div>
+        </Link>
 
       </div>
 

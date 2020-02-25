@@ -7,7 +7,11 @@ import svgKnapsack from "svg/backpack.svg";
 import svgSorting from "svg/sort-amount-asc.svg";
 
 const NavBar = () => {
-  const history = useHistory();
+  // const history = useHistory();
+
+  const refreshPage = () => {
+    window.location.reload(); 
+  }
 
   return (
     <nav className={classes.NavBar}>
@@ -28,7 +32,8 @@ const NavBar = () => {
           <a href="http://www.github.com/gosualex" target="_blank" rel="noopener noreferrer" ><i className="fab fa-github"></i></a>
           <a href="http://www.linkedin.com/in/roy-alexander-daae/" target="_blank" rel="noopener noreferrer" ><i className="fab fa-linkedin"></i></a>
         </div>
-        <button className={[classes.ResetIcon, classes.Icon].join(" ")} onClick={() => history.push(history.location.pathname, null)} >
+        <button className={[classes.ResetIcon, classes.Icon].join(" ")} onClick={refreshPage} >
+        {/* <button className={[classes.ResetIcon, classes.Icon].join(" ")} onClick={() => history.push(history.location.pathname, null)} > */}
           Reset
         </button>
       </div>

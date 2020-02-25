@@ -45,10 +45,12 @@ tr:nth-child(even) {
               inset -3px -3px 5px rgba(255, 255, 255, 0.6); */
 }
 
-.currentIndexColor {
+.CurrentIndex {
   background-color: var(--red) !important;
+  transition: all 0.2s;
 }
 
-.swapIndexesColor {
-  background-color: var(--blue) !important;
+.SwapIndex {
+  background-color: var(--red) !important;
+  transition: all 0.4s;
 }

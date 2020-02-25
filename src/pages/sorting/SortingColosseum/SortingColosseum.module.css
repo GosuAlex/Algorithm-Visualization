@@ -11,8 +11,9 @@
   display: inline-block;
   width: 8px;
   margin-right: 5px;
-  height: 100%;
+  /* height: 100%; */
   background-color: var(--grey);
+  transition: all 0.2s;
 }
 
 .Sorted {
@@ -20,9 +21,11 @@
 }
 
 .CurrentIndex {
-  background-color: var(--blue);
+  background-color: var(--red) !important;
+  transition: background-color 0.3s;
 }
 
-.SwitchIndex {
-  background-color: var(--red);
+.SwapIndex {
+  background-color: var(--red) !important;
+  transition: background-color 0.1s;
 }

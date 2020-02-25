@@ -31,6 +31,16 @@ input[type=number] {
     inset -2px -2px 3px rgba(255, 255, 255, 0.8);
 }
 
+.Btn:disabled {
+  background-color: var(--bgDark);
+  cursor: not-allowed;
+}
+
+.Btn:disabled:hover {
+  color: var(--grey);
+  cursor: not-allowed;
+}
+
 .Sign {
   box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3),
     inset -1px -1px 1px rgba(255, 255, 255, 0.8);
@@ -52,6 +62,7 @@ input[type=number] {
 .SortBtn {
   background-color: var(--blueWeak);
   cursor: pointer;
+  width: 70px;
 }
 
 .SortBtn:hover {
@@ -97,6 +108,14 @@ input[type=number] {
 .SwitchField input:checked + label {
   background-color: var(--blueWeak);
   color: var(--grey);
+}
+
+.SwitchField input:checked:disabled + label {
+  background-color: var(--redWeak);
+}
+
+.SwitchField input:disabled + label {
+  cursor: not-allowed;
 }
 
 .SwitchField label:first-of-type {
