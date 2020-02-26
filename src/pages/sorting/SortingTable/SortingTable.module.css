@@ -52,5 +52,26 @@ tr:nth-child(even) {
 
 .SwapIndex {
   background-color: var(--red) !important;
-  transition: all 0.4s;
+  transition: all 0.2s;
+}
+.FrontIndex {
+  background-color: var(--blue) !important;
+}
+
+/* .Sorted {
+  background-color: var(--green) !important;
+} */
+
+.Sorted {
+  animation: finish 1s ease;
+}
+
+@keyframes finish {
+  0%,100% { }
+  40% { background-color: var(--green) }
+}
+
+.FrontIndex {
+  background-color: var(--blue) !important;
+  transition: background-color 0s;
 }

@@ -2,7 +2,7 @@ import React from 'react'
 
 import classes from './SortingTable.module.css';
 
-const SortingTable = ({arr, currentIndex, swapIndex}) => {
+const SortingTable = ({arr, currentIndex, swapIndex, frontIndex, sorted}) => {
   return (
     <div className={classes.Table}>
       <div className={classes.ArrayTable}>
@@ -17,9 +17,15 @@ const SortingTable = ({arr, currentIndex, swapIndex}) => {
               <tr 
                 key={index} 
                 className={
-                  swapIndex === index
-                    ? classes.SwapIndex
-                      : currentIndex === index ? classes.CurrentIndex : null
+                  frontIndex === index
+                    ? classes.FrontIndex
+                    : swapIndex === index
+                      ? classes.SwapIndex
+                      : currentIndex === index
+                        ? classes.CurrentIndex
+                        : sorted
+                          ? classes.Sorted
+                          : null
                 }
               >
                 <td>{index}</td>
