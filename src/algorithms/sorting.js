@@ -1,7 +1,8 @@
+// setArr(Object.assign([...arr], {0 : arr[1], 1 : arr[0]})); // test one line set new array with swapped indexes. But it added whole thing.
+// Replay object holds all the event records of this sorting algo.
+// It will be playing back for DOM later to avoid setTimeout unfortunate changing variables behavior.  
+
 export const insertionSort = (arr) => {
-  // setArr(Object.assign([...arr], {0 : arr[1], 1 : arr[0]})); // test one line set new array with swapped indexes. But it added whole thing.
-  // Replay object holds all the event records of this sorting algo.
-  // It will be playing back for DOM later to avoid setTimeout unfortunate changing variables behavior.  
   const sortingReplay = {
     arrMutation: [],
     indexMovement: [],
@@ -39,47 +40,81 @@ export const insertionSort = (arr) => {
 };
 
 export const selectionSort = (arr) => {
-  // Check if arr length is more than just 1.
-  if(arr.length < 2){
-    return arr;
-  }
+  const sortingReplay = {
+    arrMutation: [],
+    indexMovement: [],
+    swapMovement: [],
+    frontIndex: []
+  };
 
   for(let position = 0 ; position < arr.length ; position++) {
-    
     let minIndex = position;
     let counter = minIndex + 1;
 
     for(let index = counter ; index < arr.length ; index++) {
+      sortingReplay.indexMovement.push(position);
+      sortingReplay.frontIndex.push(index);
       // Finds the index of the smallest number. The minimum index.
       if(arr[minIndex] > arr[index]) {
         minIndex = index;
       }
+      sortingReplay.swapMovement.push(minIndex);
+      sortingReplay.arrMutation.push([...arr]);
     }
-    
     // Destructure. Change places in this case. Puts minIndex at the  current position index.
     [arr[minIndex], arr[position]] = [arr[position], arr[minIndex]];
+
+    sortingReplay.arrMutation.push([...arr]);
+    sortingReplay.swapMovement.push(minIndex);
+    sortingReplay.indexMovement.push(position);
+    sortingReplay.frontIndex.push(null);
   }
   
-  // If you want don't want mutate original arr.
-  // begin with: mutatableArr = [...arr];
-  // return mutatableArr;
+  sortingReplay.arrMutation.push([...arr]);
+  sortingReplay.swapMovement.push(null);
+  sortingReplay.indexMovement.push(null);
+  sortingReplay.frontIndex.push(null);
+
+  return sortingReplay;
 }
 
 export const bubbleSort = (arr) => {
-  
-  for(let i =1 ; i < arr.length ; i++) {
+  const sortingReplay = {
+    arrMutation: [],
+    indexMovement: [],
+    swapMovement: [],
+    frontIndex: []
+  };
+
+  for(let i = 1 ; i < arr.length ; i++) {
     
     for(let index = 0 ; index < arr.length -1 ; index++) {
-
       if(arr[index] > arr[index+1]) {
+        sortingReplay.indexMovement.push(index);
+        sortingReplay.swapMovement.push(index+1);
+        sortingReplay.frontIndex.push(null);
         [arr[index], arr[index+1]] = [arr[index+1], arr[index]];
+      } else {
+        sortingReplay.indexMovement.push(null);
+        sortingReplay.swapMovement.push(null);
+        sortingReplay.frontIndex.push(index);
       }
+      sortingReplay.arrMutation.push([...arr]);
     }
-    
   }
 
-  
-  // If you want don't want mutate original arr.
-  // begin with: mutatableArr = [...arr];
-  // return mutatableArr;
+  sortingReplay.arrMutation.push([...arr]);
+  sortingReplay.swapMovement.push(null);
+  sortingReplay.indexMovement.push(null);
+  sortingReplay.frontIndex.push(null);
+
+  return sortingReplay;
+}
+
+export const heapSort = (arr) => {
+
+}
+
+export const quickSort = (arr) => {
+
 }
