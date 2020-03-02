@@ -32,6 +32,8 @@ const SortingControlPanel = ({setArrSize, placeholderNumber, createRandomArr, so
         <label htmlFor="bubble">Bubble</label>
         <input type="radio" id="heap" name="heap" value="heap" checked={currentSwitch === "heap"} onChange={(e) => switchFieldHandler(e.currentTarget.value)} disabled={playing} />
         <label htmlFor="heap">Heap</label>
+        <input type="radio" id="quick" name="quick" value="quick" checked={currentSwitch === "quick"} onChange={(e) => switchFieldHandler(e.currentTarget.value)} disabled={playing} />
+        <label htmlFor="quick">Quick</label>
       </div>
     </>
   );

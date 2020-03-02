@@ -3,6 +3,7 @@
 // model for catch rejected promise
 // way to stop sort
 // better reset event then refresh page
+// colums and table data can be components
 
 import React, { useState } from "react";
 
@@ -10,7 +11,7 @@ import classes from "./Sorting.module.css";
 import SortingTable from "./SortingTable/SortingTable";
 import SortingColosseum from "./SortingColosseum/SortingColosseum";
 import SortingControlPanel from "./SortingControlPanel/SortingControlPanel";
-import {insertionSort, selectionSort, bubbleSort, heapSort, quickSort} from "algorithms/sorting";
+import {insertionSort, selectionSort, bubbleSort, heapSort, quickSort, callQuickSort} from "algorithms/sorting";
 
 const Sorting = () => {
   const [arrState, setArrState] = useState(Array.from({ length: 10 }, (val = 50, idx) => val - idx));
@@ -50,7 +51,7 @@ const Sorting = () => {
           sortingReplay = heapSort([...arrState]);
           break;
         case "quick":
-          sortingReplay = quickSort([...arrState]);
+          sortingReplay = callQuickSort([...arrState], 0, arrSize - 1);
           break;
         default:
           break;
@@ -72,7 +73,7 @@ const Sorting = () => {
             setPlaying(false);
             setSorted(true);
           }
-        }, i * 100);
+        }, i * 200);
       }
     }).catch((rejection) => {
       console.error("Could not get choosen sorting method : " + rejection);

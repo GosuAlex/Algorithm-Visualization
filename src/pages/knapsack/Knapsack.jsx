@@ -6,12 +6,12 @@ const Knapsack = () => {
   return (
     <div className={classes.Dashboard}>
       <div className={classes.Table}>
-        //ItemTable
-        //Knapsack table
+        {/* //ItemTable
+        //Knapsack table */}
       </div>
       <div className={classes.Control}>
-        //Graph
-        //ControlPanel
+        {/* //Graph
+        //ControlPanel */}
       </div>
     </div>
   )

@@ -5,6 +5,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from 'components/navbar'; // Look. This is with package.json "Main:" added
 import Frontpage from 'pages/frontpage/Frontpage';
 import Sorting from 'pages/sorting/Sorting';
+import TravellingSalesman from 'pages/travellingSalesman/TravellingSalesman';
+import Knapsack from 'pages/knapsack/Knapsack';
 
 
 
@@ -14,8 +16,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route path="/" exact component={Frontpage} />
-        <Route path="/travellingsalesman" component={Sorting} />
-        <Route path="/knapsack" component={Sorting} />
+        <Route path="/travellingsalesman" component={TravellingSalesman} />
+        <Route path="/knapsack" component={Knapsack} />
         <Route path="/sorting" component={Sorting} />
       </Switch>
     </BrowserRouter>

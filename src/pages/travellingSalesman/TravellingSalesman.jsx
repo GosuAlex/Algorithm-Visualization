@@ -6,12 +6,12 @@ const TravellingSalesman = () => {
   return (
     <div className={classes.Dashboard}>
       <div className={classes.Tables}>
-        //CityTable
-        //RouteTable
+        {/* //CityTable
+        //RouteTable */}
       </div>
       <div className={classes.Control}>
-        //Graph
-        //ControlPanel
+        {/* //Graph
+        //ControlPanel */}
       </div>
     </div>
   )
