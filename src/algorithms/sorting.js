@@ -175,12 +175,13 @@ export const heapSort = arr => {
   return sortingReplay;
 };
 
-export const quickSort = (arr, left, right, sortingReplay) => {
+export const actualQuickSort = (arr, left, right, sortingReplay) => {
 
   // Sort and get dividing index.
   function subSort(arr, left, right) {
     // Pivot get set to the middle item in the array.
     let pivot = arr[Math.floor((right + left) / 2)];
+    let pivotIndex = Math.floor((right + left) / 2);
     
     // While the left & right pointers have not passed each other.
     while(left <= right) {
@@ -189,17 +190,17 @@ export const quickSort = (arr, left, right, sortingReplay) => {
       while(arr[left] < pivot) {
         left++;
         sortingReplay.arrMutation.push([...arr]);
-        sortingReplay.swapMovement.push(null);
-        sortingReplay.indexMovement.push(null);
-        sortingReplay.frontIndex.push(left);
+        sortingReplay.swapMovement.push(right);
+        sortingReplay.indexMovement.push(left);
+        sortingReplay.frontIndex.push(pivotIndex);
       }
       // While right pointer's index has greater value than pivot value. Step to next index.
       while(arr[right] > pivot) {
         right--;
         sortingReplay.arrMutation.push([...arr]);
-        sortingReplay.swapMovement.push(null);
-        sortingReplay.indexMovement.push(null);
-        sortingReplay.frontIndex.push(right);
+        sortingReplay.swapMovement.push(right);
+        sortingReplay.indexMovement.push(left);
+        sortingReplay.frontIndex.push(pivotIndex);
       }
       
       // If left & right pointers have passed each other. Swap the values on those indexes, and step both pointers to the next index.
@@ -209,7 +210,7 @@ export const quickSort = (arr, left, right, sortingReplay) => {
         sortingReplay.arrMutation.push([...arr]);
         sortingReplay.swapMovement.push(right);
         sortingReplay.indexMovement.push(left);
-        sortingReplay.frontIndex.push(null);
+        sortingReplay.frontIndex.push(pivotIndex);
         
         left++;
         right--;
@@ -224,17 +225,17 @@ export const quickSort = (arr, left, right, sortingReplay) => {
   
   // more items on the left side of the dividerIndex
   if(left < dividerIndex - 1) {
-    quickSort(arr, left, dividerIndex - 1, sortingReplay);
+    actualQuickSort(arr, left, dividerIndex - 1, sortingReplay);
   }
   // more items on the left side of the dividerIndex
   if(dividerIndex < right) {
-    quickSort(arr, dividerIndex, right, sortingReplay);
+    actualQuickSort(arr, dividerIndex, right, sortingReplay);
   }
   
   return sortingReplay;
 }
 
-export const callQuickSort = (arr, left, right) => {
+export const quickSort = (arr, left, right) => {
   let sortingReplay = {
     arrMutation: [],
     indexMovement: [],
@@ -242,7 +243,7 @@ export const callQuickSort = (arr, left, right) => {
     frontIndex: []
   };
 
-  quickSort(arr, left, right, sortingReplay);
+  actualQuickSort(arr, left, right, sortingReplay);
   
   sortingReplay.arrMutation.push(...[sortingReplay.arrMutation[sortingReplay.arrMutation.length-1]]);
   sortingReplay.swapMovement.push(null);

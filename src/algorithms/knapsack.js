@@ -1,5 +1,3 @@
-//gjern sum array reng in. skriv noe om algoen her. dette er index genetic ish...
-
 function randomNumber(max) {
   return Math.floor(Math.random() * max) + 1;
 }
@@ -18,32 +16,6 @@ function createRandomKnapsack(maxWeight, objects) {
   let i = 0;
   let knapsackWeight = 0;
   
-  //this might be cheating
-  /*while(knapsackWeight < maxWeight && objects.weight.some(item => item <= (maxWeight - knapsackWeight))) {
-    
-    let validWeightPicks = objects.weight.reduce((acc,cur,idx) => {
-      if(cur <= (maxWeight - knapsackWeight) && !arr.includes(idx)) {
-        acc.push(idx);
-      }
-      return acc;
-    },[]);
-    
-    if (!validWeightPicks.length) {
-      break;
-    }
-    
-    //console.log("valid: " + validWeightPicks);
-    
-    randomPick = randomNumber(validWeightPicks.length - 2);
-    
-    //console.log("pick: " + randomPick);
-    arr.push(validWeightPicks[randomPick]);
-    //console.log(arr);
-    knapsackWeight += objects.weight[validWeightPicks[randomPick]];
-    //console.log(knapsackWeight);
-  }
-  */
-  //truly random, no cheating
   while (knapsackWeight < maxWeight && i <= maxWeight) {
     randomPick = randomNumber(arr.length - 2);
     arr[randomPick] = 1;

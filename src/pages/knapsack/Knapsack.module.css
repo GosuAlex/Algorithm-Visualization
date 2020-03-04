@@ -1,0 +1,26 @@
+.Dashboard {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 100px;
+}
+
+.Graph {
+  width: 800px;
+  height: 500px;
+  background-color: var(--grey);
+  margin-top: 50px;
+}
+
+.Tables {
+  display: flex;
+  align-items: flex-start;
+  color: var(--grey);
+  justify-content: space-evenly;
+  width: 40vw;
+  margin-left: 50px;
+}
+
+.Control {
+  margin-right: 60px;
+}

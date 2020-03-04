@@ -1,0 +1,161 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+ -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance:textfield;
+}
+
+
+.ControlPanel {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.ControlColumn {
+  display: flex;
+  flex-direction: column;
+  /* float right  */
+  align-items: flex-end;
+  min-height: 300px;
+}
+
+.ControlColumn:nth-last-child(2) {
+  justify-self: flex-end;
+  margin-left: auto;
+}
+
+.Btn {
+  all: unset;
+  background-color: var(--bg);
+  border-radius: 7px;
+  margin: 10px 10px;
+  padding: 8px;
+  font-size: 1.5em;
+  color: var(--grey);
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2),
+    -2px -2px 3px rgba(255, 255, 255, 0.8), inset 2px 2px 3px rgba(0, 0, 0, 0),
+    inset -2px -2px 3px rgba(255, 255, 255, 0);
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  text-align: center;
+}
+
+.Btn:hover {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0), -2px -2px 3px rgba(255, 255, 255, 0),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.2),
+    inset -2px -2px 3px rgba(255, 255, 255, 0.8);
+}
+
+.Btn:disabled {
+  background-color: var(--bgDark);
+  cursor: not-allowed;
+}
+
+.Btn:disabled:hover {
+  color: var(--grey);
+  cursor: not-allowed;
+}
+
+.Sign {
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.8);
+  background-color: #d5d8e0;
+  border-radius: 7px;
+  margin: 10px 10px;
+  padding: 8px;
+  font-size: 1.5em;
+  color: var(--grey);
+}
+
+.NumberOfCities {
+  background-color: var(--redWeak);
+  width: 60px;
+  border: none;
+}
+
+.NumberOfCities:hover {
+  color: var(--red);
+}
+
+.MileRange {
+  background-color: var(--redWeak);
+   width: 60px;
+  border: none;
+}
+
+.MileRange:hover {
+  color: var(--red);
+}
+
+.Iterations {
+  background-color: var(--blueWeak);
+  width: 60px;
+  border: none;
+}
+
+.Optimize {
+  justify-self: end;
+  margin-top: auto;
+  background-color: var(--blueWeak);
+  border: none;
+  cursor: pointer;
+ }
+ 
+ .Optimize:hover {
+   color: var(--blue);
+ }
+
+ .SwitchField {
+  justify-self: flex-end;
+  margin: 8px 8px;
+  margin-top: auto;
+  display: flex;
+}
+
+.SwitchField input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+}
+
+.SwitchField label {
+  background-color: var(--bgDark);
+  color: var(--greyDark);
+  font-size: 20px;
+  text-align: center;
+  padding: 10px 20px;
+  margin-right: -1px;
+  border: 3px solid var(--bg);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.SwitchField label:hover {
+  cursor: pointer;
+}
+
+.SwitchField input:checked + label {
+  background-color: var(--blueWeak);
+  color: var(--grey);
+}
+
+.SwitchField input:checked:disabled + label {
+  background-color: var(--redWeak);
+}
+
+.SwitchField input:disabled + label {
+  cursor: not-allowed;
+}
+
+.SwitchField label:first-of-type {
+  border-radius: 10px 0 0 10px;
+}
+
+.SwitchField label:last-of-type {
+  border-radius: 0 10px 10px 0;
+}

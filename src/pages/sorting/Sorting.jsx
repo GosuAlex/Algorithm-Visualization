@@ -4,6 +4,9 @@
 // way to stop sort
 // better reset event then refresh page
 // colums and table data can be components
+// quicksort needs more colors, maybe heapsort also.
+// unsure if quicksort is optimal... little weird.
+// signal error with values above limited set on inputs
 
 import React, { useState } from "react";
 
@@ -11,7 +14,7 @@ import classes from "./Sorting.module.css";
 import SortingTable from "./SortingTable/SortingTable";
 import SortingColosseum from "./SortingColosseum/SortingColosseum";
 import SortingControlPanel from "./SortingControlPanel/SortingControlPanel";
-import {insertionSort, selectionSort, bubbleSort, heapSort, quickSort, callQuickSort} from "algorithms/sorting";
+import {insertionSort, selectionSort, bubbleSort, heapSort, quickSort} from "algorithms/sorting";
 
 const Sorting = () => {
   const [arrState, setArrState] = useState(Array.from({ length: 10 }, (val = 50, idx) => val - idx));
@@ -51,7 +54,7 @@ const Sorting = () => {
           sortingReplay = heapSort([...arrState]);
           break;
         case "quick":
-          sortingReplay = callQuickSort([...arrState], 0, arrSize - 1);
+          sortingReplay = quickSort([...arrState], 0, arrSize - 1);
           break;
         default:
           break;
@@ -59,7 +62,7 @@ const Sorting = () => {
       if(sortingReplay.arrMutation.length)
         resolve();
     })
-
+    
     runAlgo.then(() => {
       setArrState([]); // Put this so the first index gets colored green on pressing sort twice, but the whole thing turns green then.
       for(let i in sortingReplay.arrMutation) {
@@ -73,7 +76,7 @@ const Sorting = () => {
             setPlaying(false);
             setSorted(true);
           }
-        }, i * 200);
+        }, i * 100);
       }
     }).catch((rejection) => {
       console.error("Could not get choosen sorting method : " + rejection);
