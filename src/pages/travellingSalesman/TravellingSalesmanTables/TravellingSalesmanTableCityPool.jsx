@@ -12,8 +12,8 @@ const TravellingSalesmanTableCityPool = ({arr, currentIndex, swapIndex, frontInd
         <table>
           <tbody>
             <tr>
-              <th>Index</th>
-              <th>Value</th>
+              <th>City</th>
+              <th>Miles</th>
             </tr>
             {arr.map((value, index) => (
               <tr 

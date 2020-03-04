@@ -13,8 +13,8 @@ const TravellingSalesmanTableRoute = ({arr, currentIndex, swapIndex, frontIndex,
         <table>
           <tbody>
             <tr>
-              <th>Index</th>
-              <th>Value</th>
+              <th>From</th>
+              <th className={classes.Theader}>To</th>
             </tr>
             {arr.map((value, index) => (
               <tr 
