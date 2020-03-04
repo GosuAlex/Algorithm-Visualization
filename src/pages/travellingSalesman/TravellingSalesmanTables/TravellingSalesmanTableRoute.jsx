@@ -1,6 +1,7 @@
 import React from 'react'
 
 import classes from './TravellingSalesmanTable.module.css'
+import {cities} from "../cities";
 
 const TravellingSalesmanTableRoute = ({arr, currentIndex, swapIndex, frontIndex, sorted, initRandom, initGreedy, playing}) => {
   return (
@@ -17,23 +18,25 @@ const TravellingSalesmanTableRoute = ({arr, currentIndex, swapIndex, frontIndex,
               <th className={classes.Theader}>To</th>
             </tr>
             {arr.map((value, index) => (
-              <tr 
-                key={index} 
-                className={
-                  frontIndex.some(element => element === index) 
-                    ? classes.FrontIndex
-                    : swapIndex === index
-                      ? classes.SwapIndex
-                      : currentIndex === index
-                        ? classes.CurrentIndex
-                        : sorted
-                          ? classes.Sorted
-                          : null
-                }
-              >
-                <td>{index}</td>
-                <td>{value}</td>
-              </tr>
+              index < arr.length-1 && (
+                <tr 
+                  key={index} 
+                  className={
+                    frontIndex.some(element => element === index) 
+                      ? classes.FrontIndex
+                      : swapIndex === index
+                        ? classes.SwapIndex
+                        : currentIndex === index
+                          ? classes.CurrentIndex
+                          : sorted
+                            ? classes.Sorted
+                            : null
+                  }
+                >
+                  <td>{cities[arr[index]]}</td>
+                  {index === arr.length-2 ? <td>{cities[arr[0]]}</td> : <td>{cities[arr[index+1]]}</td> }
+                </tr>
+                )
             ))}
           </tbody>
         </table>

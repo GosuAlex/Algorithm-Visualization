@@ -1,8 +1,9 @@
 import React from 'react'
 
 import classes from './TravellingSalesmanTable.module.css'
+import {cities} from "../cities";
 
-const TravellingSalesmanTableCityPool = ({arr, currentIndex, swapIndex, frontIndex, sorted, randomize, playing}) => {
+const TravellingSalesmanTableCityPool = ({arr, randomize, playing, cityHoverHandler, cityHover}) => {
   return (
     <div className={classes.Table}>
       <h3>Reset pool :</h3>
@@ -12,26 +13,29 @@ const TravellingSalesmanTableCityPool = ({arr, currentIndex, swapIndex, frontInd
         <table>
           <tbody>
             <tr>
-              <th>City</th>
-              <th>Miles</th>
+              <th className={classes.Theader}>City</th>
+              <th>Miles To</th>
             </tr>
             {arr.map((value, index) => (
               <tr 
-                key={index} 
+                key={index}
+                onMouseOver={() => cityHoverHandler(index)}
+                onMouseLeave={() => cityHoverHandler(null)}
                 className={
-                  frontIndex === index
-                    ? classes.FrontIndex
-                    : swapIndex === index
-                      ? classes.SwapIndex
-                      : currentIndex === index
-                        ? classes.CurrentIndex
-                        : sorted
-                          ? classes.Sorted
-                          : null
+                  cityHover === index
+                    ? classes.CityHoverCurrentCity
+                    : null
                 }
               >
-                <td>{index}</td>
-                <td>{value}</td>
+                <td>{cities[index]}</td>
+                <td
+                  className={
+                    cityHover === index
+                      ? null
+                      : cityHover >= 0
+                        ? classes.CityHover
+                        : null}
+                >{value[cityHover]}</td>
               </tr>
             ))}
           </tbody>

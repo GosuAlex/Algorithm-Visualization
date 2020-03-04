@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./TravellingSalesmanControlPanel.module.css";
 
-const TravellingSalesmanControlPanel = ({setArrSize, setMileRange, setIterations, iterations, currentDistance, bestDistance, placeholderNumber, optimize, playing, currentSwitch, switchFieldHandler }) => {
+const TravellingSalesmanControlPanel = ({setArrSize, setMileRange, mileRange, setIterations, iterations, currentDistance, bestDistance, placeholderNumber, optimize, playing, currentSwitch, switchFieldHandler }) => {
   return (
     <div className={classes.ControlPanel}>
       <div className={classes.ControlColumn}>
@@ -17,9 +17,9 @@ const TravellingSalesmanControlPanel = ({setArrSize, setMileRange, setIterations
           onChange={e => setArrSize(e.target.value)}
           placeholder={placeholderNumber}
           min="10"
-          max="999"
+          max="500"
         />
-        <input className={[classes.Btn, classes.MileRange].join(" ")} type="number" onChange={e => setMileRange(e.target.value)} placeholder={placeholderNumber} min="10" />
+        <input className={[classes.Btn, classes.MileRange].join(" ")} type="number" onChange={e => setMileRange(e.target.value)} placeholder={mileRange} min="10" max="10000" />
         <input className={[classes.Btn, classes.Iterations].join(" ")} type="number" onChange={e => setIterations(e.target.value)} placeholder={iterations} min="1" max="10000" />
       </div>
 

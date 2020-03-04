@@ -59,13 +59,13 @@ export function algoInitRandom(arr) {
   }
   // Go back to startpoint at the end.
   distance += arr[visitedCities[(visitedCities.length - 1)]][visitedCities[0]];
-  visitedCities.push(visitedCities[0]);
+  visitedCities.push(0);
 
   const route = {
     visitedCities: visitedCities,
     distance: distance
   }
-
+  
   return route;
 }
 

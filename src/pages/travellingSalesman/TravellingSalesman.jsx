@@ -1,3 +1,8 @@
+// fix sorted and rerun
+// fix best distance changes rerun'
+// animate randomize, signal it has changed
+// randomize city names picked
+
 import React, { useState } from 'react'
 
 import classes from "./TravellingSalesman.module.css";
@@ -8,11 +13,11 @@ import TravellingSalesmanTableRoute from './TravellingSalesmanTables/TravellingS
 import { genAdjSymMatrix, algoInitRandom, algoInitGreedy, greedyImprovement, greedyRandom } from "algorithms/tsp";
 
 const TravellingSalesman = () => {
-  const [arrRoute, setArrRoute] = useState(Array.from({ length: 10 }, v => 0));
-  const [arrCities, setArrCities] = useState(Array.from({ length: 10 }, v => 100));
-  const [arrSize, setArrSize] = useState(arrCities.length);
-  const [mileRange, setMileRange] = useState(arrCities.length);
-  const [iterations, setIterations] = useState(10);
+  const [arrRoute, setArrRoute] = useState([]);
+  const [arrSize, setArrSize] = useState(10);
+  const [mileRange, setMileRange] = useState(100);
+  const [arrCities, setArrCities] = useState(genAdjSymMatrix(arrSize, mileRange));
+  const [iterations, setIterations] = useState(50);
   const [distance, setDistance] = useState();
   const [bestDistance, setBestDistance] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(null);
@@ -21,6 +26,7 @@ const TravellingSalesman = () => {
   const [switchField, setSwitchField] = useState("greedy");
   const [frontIndex, setFrontIndex] = useState([]);
   const [sorted, setSorted] = useState(false);
+  const [cityHover, setCityHover] = useState(null);
   
   const randomize = () => {
     setArrCities(genAdjSymMatrix(arrSize, mileRange));
@@ -101,6 +107,10 @@ const TravellingSalesman = () => {
     setSwitchField(value);
   }
 
+  const cityHoverHandler = (index) => {
+    setCityHover(index);
+  }
+
   return (
     <div className={classes.Dashboard}>
       <section className={classes.Tables}>
@@ -108,6 +118,8 @@ const TravellingSalesman = () => {
           arr={arrCities}
           randomize={randomize}
           playing={playing}
+          cityHover={cityHover}
+          cityHoverHandler={cityHoverHandler}
         />
         <TravellingSalesmanTableRoute 
           arr={arrRoute}
@@ -118,6 +130,7 @@ const TravellingSalesman = () => {
           swapIndex={swapIndex}
           sorted={sorted}
           playing={playing}
+          arrRoute={arrRoute}
         />
       </section>
       <section className={classes.Control}>
@@ -127,6 +140,7 @@ const TravellingSalesman = () => {
           switchFieldHandler={switchFieldHandler}
           currentSwitch={switchField}
           setArrSize={setArrSize}
+          mileRange={mileRange}
           setMileRange={setMileRange}
           setIterations={setIterations}
           iterations={iterations}
