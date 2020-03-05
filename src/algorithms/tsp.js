@@ -188,7 +188,7 @@ export function greedyRandom(arr, visitedCitiesInit, distanceInit, iterations) {
     for (let i = times; i > 0; i--) {
       iterations--;
       if(iterations <= 0) {
-        sortingReplay.arrMutation.push([...visitedCitiesBest]);
+        sortingReplay.arrMutation.push([...visitedCities]);
         sortingReplay.swapMovement.push(null);
         sortingReplay.indexMovement.push(null);
         sortingReplay.frontIndex.push([]);
