@@ -1,14 +1,13 @@
 import React from 'react'
 
 import classes from './TravellingSalesmanTable.module.css'
-import {cities} from "../cities";
 
-const TravellingSalesmanTableRoute = ({arr, currentIndex, swapIndex, frontIndex, sorted, initRandom, initGreedy, playing}) => {
+const TravellingSalesmanTableRoute = ({arr, currentIndex, readyForInit, swapIndex, frontIndex, sorted, initRandom, initGreedy, playing, cityNames}) => {
   return (
     <div className={classes.Table}>
       <h3>Initialize route with :</h3>
-      <button className={[classes.Btn, classes.RouteInit].join(" ")} onClick={initRandom} disabled={playing} >Random</button>
-      <button className={[classes.Btn, classes.RouteInit].join(" ")} onClick={initGreedy} disabled={playing} >Greedy</button>
+      <button className={[classes.Btn, classes.RouteInit].join(" ")} onClick={initRandom} disabled={playing || !readyForInit} >Random</button>
+      <button className={[classes.Btn, classes.RouteInit].join(" ")} onClick={initGreedy} disabled={playing || !readyForInit} >Greedy</button>
       <div className={classes.ArrayTable}>
       <h2>Route</h2>
         <table>
@@ -33,8 +32,8 @@ const TravellingSalesmanTableRoute = ({arr, currentIndex, swapIndex, frontIndex,
                             : null
                   }
                 >
-                  <td>{cities[arr[index]]}</td>
-                  {index === arr.length-2 ? <td>{cities[arr[0]]}</td> : <td>{cities[arr[index+1]]}</td> }
+                  <td>{cityNames[arr[index]]}</td>
+                  {index === arr.length-2 ? <td>{cityNames[arr[0]]}</td> : <td>{cityNames[arr[index+1]]}</td> }
                 </tr>
                 )
             ))}

@@ -1,9 +1,8 @@
 import React from 'react'
 
 import classes from './TravellingSalesmanTable.module.css'
-import {cities} from "../cities";
 
-const TravellingSalesmanTableCityPool = ({arr, randomize, playing, cityHoverHandler, cityHover}) => {
+const TravellingSalesmanTableCityPool = ({arr, randomize, playing, cityHoverHandler, cityHover, cityNames}) => {
   return (
     <div className={classes.Table}>
       <h3>Reset pool :</h3>
@@ -27,7 +26,7 @@ const TravellingSalesmanTableCityPool = ({arr, randomize, playing, cityHoverHand
                     : null
                 }
               >
-                <td>{cities[index]}</td>
+                <td>{cityNames[index]}</td>
                 <td
                   className={
                     cityHover === index

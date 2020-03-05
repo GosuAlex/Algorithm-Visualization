@@ -2,11 +2,13 @@
 // fix best distance changes rerun'
 // animate randomize, signal it has changed
 // randomize city names picked
-// newBest doesn't animate quickly enough if there is fast changes
+// newBest didn't animate quickly enough if there is fast changes
 // getting crowded here
+// when creating separate table data row component, prolly better performance from that also React.memo()
 
 import React, { useState } from 'react'
 import { genAdjSymMatrix, algoInitRandom, algoInitGreedy, greedyImprovement, greedyRandom } from "algorithms/tsp";
+import {cities} from "./cities";
 
 import classes from "./TravellingSalesman.module.css";
 import TravellingSalesmanControlPanel from './TravellingSalesmanControlPanel/TravellingSalesmanControlPanel';
@@ -18,7 +20,7 @@ const TravellingSalesman = () => {
   const [arrRoute, setArrRoute] = useState([]);
   const [arrSize, setArrSize] = useState(10);
   const [mileRange, setMileRange] = useState(100);
-  const [arrCities, setArrCities] = useState(genAdjSymMatrix(arrSize, mileRange));
+  const [arrCities, setArrCities] = useState([]);
   const [iterations, setIterations] = useState(50);
   const [distance, setDistance] = useState();
   const [bestDistance, setBestDistance] = useState(null);
@@ -32,10 +34,19 @@ const TravellingSalesman = () => {
   const [graphData, setGraphData] = useState([]);
   const [graphYAxisMax, setGraphYAxisMax] = useState(null);
   const [readyForPlaying, setReadyForPlaying] = useState(false);
-  const [newBest, setNewBest] = useState(false);
+  const [readyForInit, setReadyForInit] = useState(false);
+  const [cityNames, setCityNames] = useState([]);
   
   const randomize = () => {
     setArrCities(genAdjSymMatrix(arrSize, mileRange));
+
+    const RandomizedCityNames = [];
+    for (let i = 0; i < arrSize; i++) {
+      RandomizedCityNames.push(cities[Math.floor(Math.random() * cities.length)]);
+    }
+
+    setReadyForInit(true);
+    setCityNames(RandomizedCityNames);
     setReadyForPlaying(false);
     setBestDistance(null);
   }
@@ -44,12 +55,10 @@ const TravellingSalesman = () => {
     const initData = algoInitRandom(arrCities);
 
     setSorted(false);
-    setNewBest(false);
     setArrRoute(initData.visitedCities);
     setDistance(initData.distance);
     if(initData.distance < bestDistance || !bestDistance) {
       setBestDistance(initData.distance);
-      setNewBest(true);
     }
     setGraphYAxisMax(mileRange * arrSize);
     calcGraphData(initData.visitedCities);
@@ -60,12 +69,10 @@ const TravellingSalesman = () => {
     const initData = algoInitGreedy(arrCities);
 
     setSorted(false);
-    setNewBest(false);
     setArrRoute(initData.visitedCities);
     setDistance(initData.distance);
     if(initData.distance < bestDistance || !bestDistance) {
       setBestDistance(initData.distance);
-      setNewBest(true);
     }
     setGraphYAxisMax(mileRange * arrSize);
     calcGraphData(initData.visitedCities);
@@ -76,7 +83,6 @@ const TravellingSalesman = () => {
     // CHECK IF ROUTE IS INITED
     setPlaying(true);
     setSorted(false);
-    setNewBest(false);
     let sortingReplay = {};
     let runAlgo = new Promise((resolve, reject) => {
       switch (switchField) {
@@ -110,7 +116,6 @@ const TravellingSalesman = () => {
             foundBestDistance = Math.min(sortingReplay.distance[i]);
             if(foundBestDistance < bestDistance)
               setBestDistance(foundBestDistance);
-              setNewBest(true);
           }
           if(i >= sortingReplay.arrMutation.length - 1) {
             setPlaying(false);
@@ -160,6 +165,7 @@ const TravellingSalesman = () => {
           playing={playing}
           cityHover={cityHover}
           cityHoverHandler={cityHoverHandler}
+          cityNames={cityNames}
         />
         <TravellingSalesmanTableRoute 
           arr={arrRoute}
@@ -171,6 +177,8 @@ const TravellingSalesman = () => {
           sorted={sorted}
           playing={playing}
           arrRoute={arrRoute}
+          cityNames={cityNames}
+          readyForInit={readyForInit}
         />
       </section>
       <section className={classes.Control}>
@@ -178,6 +186,7 @@ const TravellingSalesman = () => {
           <GraphLine
             graphData={graphData}
             graphYAxisMax={graphYAxisMax}
+            cityNames={cityNames}
           />
         </div>
         <TravellingSalesmanControlPanel
@@ -194,7 +203,6 @@ const TravellingSalesman = () => {
           currentDistance={distance}
           bestDistance={bestDistance}
           readyForPlaying={readyForPlaying}
-          newBest={newBest}
         />
       </section>
     </div>

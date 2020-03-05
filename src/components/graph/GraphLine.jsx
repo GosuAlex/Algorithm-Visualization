@@ -1,8 +1,8 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const GraphLine = ({graphData, graphYAxisMax}) => {
-
+const GraphLine = React.memo(({graphData, graphYAxisMax, cityNames}) => {
+  console.log(cityNames);
   if(!graphYAxisMax)
     graphYAxisMax = 1;
 
@@ -13,7 +13,7 @@ const GraphLine = ({graphData, graphYAxisMax}) => {
       },
       colors: ["#0AB6EC"],
       dataLabels: {
-        enabled: graphData.length > 50 ? false : true,
+        enabled: graphData.length < 50 ? true : false,
         background: {
           enabled: true,
           foreColor: '#fff',
@@ -35,18 +35,20 @@ const GraphLine = ({graphData, graphYAxisMax}) => {
         }
       },
       markers: {
-        size: 0
+        size: graphData.length < 50 ? 0 : 4
       },
       xaxis: {
-        categories: [0,1,2,3,4,5,6,7,8,9,10],
+        categories: cityNames
       },
       yaxis: {
         max: graphYAxisMax,
+        min: 0,
+        forceNiceScale: Boolean
       }
     },
     series: [
       {
-        name: "Series-1",
+        name: "Distance",
         data: graphData
       }
     ]
@@ -57,6 +59,6 @@ const GraphLine = ({graphData, graphYAxisMax}) => {
       <Chart options={graphOptions.options} series={graphOptions.series} type="line" width="800" />
     </div>
   );
-};
+});
 
 export default GraphLine;

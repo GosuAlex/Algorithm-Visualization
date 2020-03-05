@@ -171,5 +171,5 @@ input[type=number] {
 
 @keyframes finish {
   0%,100% { }
-  40% { color: var(--green) }
+  40% { background-color: var(--green) }
 }
