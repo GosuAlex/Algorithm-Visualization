@@ -5,6 +5,10 @@
 // newBest didn't animate quickly enough if there is fast changes
 // getting crowded here
 // when creating separate table data row component, prolly better performance from that also React.memo()
+// check greedyRandom for iteration times. Set better number.
+// Add progress round bar
+// add speed control, also check out lots of cities, it still slow
+// cities dont work. Some are not shown.
 
 import React, { useState } from 'react'
 import { genAdjSymMatrix, algoInitRandom, algoInitGreedy, greedyImprovement, greedyRandom } from "algorithms/tsp";
@@ -48,7 +52,10 @@ const TravellingSalesman = () => {
     setReadyForInit(true);
     setCityNames(RandomizedCityNames);
     setReadyForPlaying(false);
+    setArrRoute([]);
+    setGraphData([]);
     setBestDistance(null);
+    setGraphYAxisMax(mileRange * arrSize * 0.65);
   }
 
   const initRandom = () => {
@@ -60,7 +67,6 @@ const TravellingSalesman = () => {
     if(initData.distance < bestDistance || !bestDistance) {
       setBestDistance(initData.distance);
     }
-    setGraphYAxisMax(mileRange * arrSize);
     calcGraphData(initData.visitedCities);
     setReadyForPlaying(true);
   }
@@ -74,7 +80,6 @@ const TravellingSalesman = () => {
     if(initData.distance < bestDistance || !bestDistance) {
       setBestDistance(initData.distance);
     }
-    setGraphYAxisMax(mileRange * arrSize);
     calcGraphData(initData.visitedCities);
     setReadyForPlaying(true);
   }
@@ -205,6 +210,9 @@ const TravellingSalesman = () => {
           readyForPlaying={readyForPlaying}
         />
       </section>
+      <div className={classes.WarningScreenSize}>
+        <h3>Warning: This site is not optimized for all screensizes</h3>
+      </div>
     </div>
   )
 }

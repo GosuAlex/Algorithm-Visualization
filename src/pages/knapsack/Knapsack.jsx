@@ -29,7 +29,8 @@ const Knapsack = () => {
 
   return (
     <div className={classes.Dashboard}>
-      <section className={classes.Tables}>
+      <h2 style={{margin: "auto", color: "red"}}>Not finished yet</h2>
+      {/* <section className={classes.Tables}>
         <KnapsackTableCityPool 
           arr={arrCities}
         />
@@ -49,7 +50,8 @@ const Knapsack = () => {
           placeholderNumber={arrCities.length}
         />
         
-      </section>
+      </section> */}
+
     </div>
   )
 }

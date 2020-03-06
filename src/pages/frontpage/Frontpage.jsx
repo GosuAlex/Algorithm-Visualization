@@ -40,7 +40,7 @@ const Frontpage = () => {
       </div>
 
       <div className={classes.WarningScreenSize}>
-        <h3>Warning: This site is not optimized for mobile view</h3>
+        <h3>Warning: This site is not optimized for all screensizes</h3>
       </div>
     </>
   )

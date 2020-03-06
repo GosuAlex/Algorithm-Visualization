@@ -29,3 +29,23 @@
 .Control {
   margin-right: 60px;
 }
+
+.WarningScreenSize {
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--red);
+  color: white;
+  width: 600px;
+  height: 60px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media (max-width: 1590px) {
+  .WarningScreenSize {
+    display: block;
+  }
+}

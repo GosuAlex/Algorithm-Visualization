@@ -106,6 +106,9 @@ const Sorting = () => {
         <SortingTable arr={arrState} currentIndex={currentIndex} swapIndex={swapIndex} frontIndex={frontIndex} sorted={sorted} />
         <SortingColosseum arr={arrState} currentIndex={currentIndex} swapIndex={swapIndex} frontIndex={frontIndex} sorted={sorted} />
       </section>
+      <div className={classes.WarningScreenSize}>
+        <h3>Warning: This site is not optimized for all screensizes</h3>
+      </div>
     </>
   );
 };
