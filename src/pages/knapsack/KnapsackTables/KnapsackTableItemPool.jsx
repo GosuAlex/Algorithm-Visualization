@@ -2,20 +2,20 @@ import React from 'react'
 
 import classes from './KnapsackTable.module.css'
 
-const KnapsackTableCityPool = ({arr, currentIndex, swapIndex, frontIndex, sorted}) => {
+const KnapsackTableItemPool = ({objects, randomize, currentIndex, swapIndex, frontIndex, playing, sorted}) => {
   return (
     <div className={classes.Table}>
-      <h3>Reset map :</h3>
-      <button className={[classes.Btn, classes.Randomize].join(" ")} >Randomize</button>
+      <button className={[classes.Btn, classes.Randomize].join(" ")} onClick={randomize} disabled={playing} >Randomize</button>
       <div className={classes.ArrayTable}>
-      <h2>City Map</h2>
+      <h2>Item Pool</h2>
         <table>
           <tbody>
             <tr>
               <th>Index</th>
+              <th>Weight</th>
               <th>Value</th>
             </tr>
-            {arr.map((value, index) => (
+            {objects.value.map((value, index) => (
               <tr 
                 key={index} 
                 className={
@@ -31,6 +31,7 @@ const KnapsackTableCityPool = ({arr, currentIndex, swapIndex, frontIndex, sorted
                 }
               >
                 <td>{index}</td>
+                <td>{objects.weight[index]}</td>
                 <td>{value}</td>
               </tr>
             ))}
@@ -41,4 +42,4 @@ const KnapsackTableCityPool = ({arr, currentIndex, swapIndex, frontIndex, sorted
   )
 }
 
-export default KnapsackTableCityPool
+export default KnapsackTableItemPool

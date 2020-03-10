@@ -5,6 +5,7 @@
 // newBest didn't animate quickly enough if there is fast changes
 // getting crowded here
 // when creating separate table data row component, prolly better performance from that also React.memo()
+// or use Refs https://medium.com/@rossbulat/react-using-refs-with-the-useref-hook-884ed25b5c29
 // check greedyRandom for iteration times. Set better number.
 // Add progress round bar
 // add speed control, also check out lots of cities, it still slow

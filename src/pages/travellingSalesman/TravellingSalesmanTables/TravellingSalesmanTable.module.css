@@ -116,6 +116,7 @@ tr:nth-child(even) {
 .SwapIndex {
   background-color: var(--red) !important;
 }
+
 .FrontIndex {
   background-color: var(--blue) !important;
 }

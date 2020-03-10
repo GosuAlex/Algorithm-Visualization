@@ -1,10 +1,10 @@
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
- -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
-input[type=number] {
-  -moz-appearance:textfield;
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 table {
@@ -12,7 +12,7 @@ table {
   border-collapse: collapse;
   border-radius: 9px;
   overflow: hidden;
-/*  margin: 8px;
+  /*  margin: 8px;
    min-width: 292px; */
 }
 
@@ -23,10 +23,10 @@ td {
 }
 
 th {
- font-size: 1.2em;
- letter-spacing: 1px;
- text-align: center;
- padding: 8px; 
+  font-size: 1.2em;
+  letter-spacing: 1px;
+  text-align: center;
+  padding: 8px;
 }
 
 tr:nth-child(even) {
@@ -35,13 +35,25 @@ tr:nth-child(even) {
 
 .Table {
   text-align: center;
- }
+}
 
- .Table h2 {
+.Table h2 {
   font-size: 1.8em;
   font-family: Montserrat;
   letter-spacing: 1.5px;
   padding-top: 20px;
+}
+
+.Table .Icon {
+  all: unset;
+  font-size: 1.8em;
+  letter-spacing: 1.5px;
+  align-self: center;
+  margin: 0 20px;
+}
+
+.Table .Icon:hover {
+  color: var(--green);
 }
 
 .ArrayTable {
@@ -52,16 +64,34 @@ tr:nth-child(even) {
   /*  box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3),
               inset -3px -3px 5px rgba(255, 255, 255, 0.6); */
 }
- 
- .Btn {
+
+.TableHeaderRow {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  /* got margin px size from the other table */
+  margin-top: 23.9px;
+  margin-bottom: -3.9px; 
+}
+
+.TableHeaderRow h2 {
+  padding-top: unset;
+}
+
+.SackNumber {
+  position: absolute;
+  bottom: 0px;
+  font-size: 1.1em;;
+}
+
+.Btn {
   all: unset;
   background-color: var(--bg);
   border-radius: 7px;
   padding: 8px;
   font-size: 1.5em;
   color: var(--grey);
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2),
-    -2px -2px 3px rgba(255, 255, 255, 0.8), inset 2px 2px 3px rgba(0, 0, 0, 0),
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2), -2px -2px 3px rgba(255, 255, 255, 0.8), inset 2px 2px 3px rgba(0, 0, 0, 0),
     inset -2px -2px 3px rgba(255, 255, 255, 0);
   transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-out;
@@ -70,13 +100,12 @@ tr:nth-child(even) {
   text-align: center;
   margin: 0 10px;
   margin-bottom: 10px;
- }
+}
 
- .Btn:hover {
-  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0), -2px -2px 3px rgba(255, 255, 255, 0),
-    inset 2px 2px 3px rgba(0, 0, 0, 0.2),
+.Btn:hover {
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0), -2px -2px 3px rgba(255, 255, 255, 0), inset 2px 2px 3px rgba(0, 0, 0, 0.2),
     inset -2px -2px 3px rgba(255, 255, 255, 0.8);
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .Btn:disabled {
@@ -89,30 +118,28 @@ tr:nth-child(even) {
   cursor: not-allowed;
 }
 
- .Randomize {
+.Randomize {
   background-color: var(--redWeak);
 }
 
-.RouteInit {
-   background-color: var(--greenWeak);
+.Empty {
+  background-color: var(--greenWeak);
 }
 
 .Randomize:hover {
-  color: var(--red); 
+  color: var(--red);
 }
 
-.RouteInit:hover {
-  color: var(--green); 
+.Empty:hover {
+  color: var(--green);
 }
 
 .CurrentIndex {
   background-color: var(--red) !important;
-  transition: all 0.2s;
 }
 
 .SwapIndex {
   background-color: var(--red) !important;
-  transition: all 0.2s;
 }
 .FrontIndex {
   background-color: var(--blue) !important;
@@ -123,8 +150,12 @@ tr:nth-child(even) {
 }
 
 @keyframes finish {
-  0%,100% { }
-  40% { background-color: var(--green) }
+  0%,
+  100% {
+  }
+  40% {
+    background-color: var(--green);
+  }
 }
 
 .FrontIndex {

@@ -8,8 +8,13 @@
 .Graph {
   width: 800px;
   height: 500px;
-  background-color: var(--grey);
   margin-top: 50px;
+  margin: auto;
+  box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.3),
+    inset -1px -1px 1px rgba(255, 255, 255, 0.8);
+  background-color: #d5d8e0;
+  border-radius: 7px;
+  padding: 8px;
 }
 
 .Tables {
@@ -23,4 +28,24 @@
 
 .Control {
   margin-right: 60px;
+}
+
+.WarningScreenSize {
+  display: none;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--red);
+  color: white;
+  width: 600px;
+  height: 60px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+@media (max-width: 1590px) {
+  .WarningScreenSize {
+    display: block;
+  }
 }

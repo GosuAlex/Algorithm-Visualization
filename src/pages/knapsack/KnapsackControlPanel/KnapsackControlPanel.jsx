@@ -1,61 +1,101 @@
 import React from "react";
 import classes from "./KnapsackControlPanel.module.css";
 
-const KnapsackControlPanel = ({setArrSize, setMileRange, placeholderNumber, optimize, playing, currentSwitch, switchFieldHandler }) => {
+const KnapsackControlPanel = ({
+  setWeightRange,
+  weightRange,
+  setValueRange,
+  valueRange,
+  setKnapsacks,
+  knapsacks,
+  setMaxWeight,
+  maxWeight,
+  setMaxItems,
+  maxItems,
+  setGenerations,
+  generations,
+  playing,
+  readyForPlaying,
+  optimize
+}) => {
   return (
     <div className={classes.ControlPanel}>
       <div className={classes.ControlColumn}>
-        <label className={[classes.Sign].join(" ")}>Number of Cities :</label>
-        <label className={[classes.Sign].join(" ")}>Range of Miles :</label>
-        <label className={[classes.Sign].join(" ")}>Iterations :</label>
-        <button className={[classes.Btn, classes.Optimize].join(" ")} onClick={optimize} >Optimize with :</button>
+        <label className={[classes.Sign].join(" ")}>Items weight range :</label>
+        <label className={[classes.Sign].join(" ")}>Items value range :</label>
+        <label className={[classes.Sign].join(" ")}>Max weight :</label>
+        <label className={[classes.Sign].join(" ")}>Max items :</label>
+        <label className={[classes.Sign].join(" ")}>Knapsacks :</label>
+        <label className={[classes.Sign].join(" ")}>Generations :</label>
+        <button className={[classes.Btn, classes.Optimize].join(" ")} disabled={playing || !readyForPlaying} onClick={optimize}>
+          Optimize
+        </button>
       </div>
       <div className={classes.ControlColumn}>
         <input
-          className={[classes.Btn, classes.NumberOfCities].join(" ")}
+          className={[classes.Btn, classes.WeightRange].join(" ")}
           type="number"
-          onChange={e => setArrSize(e.target.value)}
-          placeholder={placeholderNumber}
+          onChange={e => setWeightRange(e.target.value)}
+          placeholder={weightRange}
           min="10"
-          max="999"
+          max="1000"
         />
-        <input className={[classes.Btn, classes.MileRange].join(" ")} type="number" onChange={e => setMileRange(e.target.value)} placeholder={placeholderNumber} min="10" />
-        <input className={[classes.Btn, classes.Iterations].join(" ")} type="number" placeholder={placeholderNumber} min="1" max="600" />
+        <input
+          className={[classes.Btn, classes.ValueRange].join(" ")}
+          type="number"
+          onChange={e => setValueRange(e.target.value)}
+          placeholder={valueRange}
+          min="10"
+          max="1000"
+        />
+        <input
+          className={[classes.Btn, classes.MaxWeight].join(" ")}
+          type="number"
+          onChange={e => setMaxWeight(e.target.value)}
+          placeholder={maxWeight}
+          min="1"
+          max="100"
+        />
+        <input
+          className={[classes.Btn, classes.MaxValue].join(" ")}
+          type="number"
+          onChange={e => setMaxItems(e.target.value)}
+          placeholder={maxItems}
+          min="1"
+          max="1000"
+        />
+        <input
+          className={[classes.Btn, classes.Sacks].join(" ")}
+          type="number"
+          onChange={e => setKnapsacks(e.target.value)}
+          placeholder={knapsacks}
+          min="4"
+          max="100"
+        />
+        <input
+          className={[classes.Btn, classes.Generations].join(" ")}
+          type="number"
+          onChange={e => setGenerations(e.target.value)}
+          placeholder={generations}
+          min="1"
+          max="10000"
+        />
       </div>
 
       <div className={classes.ControlColumn}>
-        <label className={[classes.Sign].join(" ")}>Current Distance :</label>
-        <label className={[classes.Sign].join(" ")}>Best Distance :</label>
-
-        <div className={classes.SwitchField}>
-          <input
-            type="radio"
-            id="greedy"
-            name="greedy"
-            value="greedy"
-            checked={currentSwitch === "greedy"}
-            onChange={(e) => switchFieldHandler(e.currentTarget.value)}
-            disabled={playing}
-          />
-          <label htmlFor="greedy">Greedy</label>
-          <input
-            type="radio"
-            id="greedyRandom"
-            name="greedyRandom"
-            value="greedyRandom"
-            checked={currentSwitch === "greedyRandom"}
-            onChange={(e) => switchFieldHandler(e.currentTarget.value)}
-            disabled={playing}
-          />
-          <label htmlFor="greedyRandom">Greedy Random</label>
-        </div>
+        <label className={[classes.Sign].join(" ")}>Best sack weight :</label>
+        <label className={[classes.Sign].join(" ")}>Best sack value :</label>
+        <label className={[classes.Sign].join(" ")}>Number of items :</label>
       </div>
 
       <div className={classes.ControlColumn}>
-        <label className={[classes.Sign].join(" ")} id="currentDistance">
+        <label className={[classes.Sign, classes.Best].join(" ")} >
           2000
         </label>
-        <label className={[classes.Sign].join(" ")} id="bestDistance">
+        <label className={[classes.Sign, classes.Best].join(" ")} >
+          2000
+        </label>
+        <label className={[classes.Sign, classes.Best].join(" ")} >
           2000
         </label>
       </div>
