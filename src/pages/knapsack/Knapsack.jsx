@@ -24,7 +24,9 @@ const Knapsack = () => {
   const [playing, setPlaying] = useState(false);
   const [sorted, setSorted] = useState(false);
   const [readyForPlaying, setreadyForPlaying] = useState(false)
-  const [graphData, setGraphData] = useState([1,2,3,4,5])
+  const [graphData, setGraphData] = useState([])
+  const [sacksTotalValue, setSacksTotalValue] = useState([[],[],[],[]])
+  const [bestTotalValue, setBestTotalValue] = useState(0)
   
   const randomize = () => {
     const randomizedObjects = createRandomObjects(maxItems, valueRange, weightRange);
@@ -49,14 +51,33 @@ const Knapsack = () => {
     // setSacks(evolvedKnapsacks);
     // setPlaying(false);
 
+    let sortingReplay = {};
     let runAlgo = new Promise((resolve, reject) => {
-      const sortingReplay = geneticRangeCrossover([...sacks], maxWeight, generations, objects);
+      sortingReplay = geneticRangeCrossover([...sacks], maxWeight, generations, objects);
       if(sortingReplay.arrMutation.length)
         resolve();
     });
 
     runAlgo.then(() => {
-
+      let foundBestTotalValue = Infinity;
+      for(let i in sortingReplay.arrMutation) {
+        // eslint-disable-next-line 
+        setTimeout(() => {
+          setSwapIndex(sortingReplay.swapMovement[i])
+          setSacks(sortingReplay.arrMutation[i])
+          setSacksTotalValue(sortingReplay.fitness[i])
+          if(Math.min(sortingReplay.fitness[i]) < foundBestTotalValue) {
+            foundBestTotalValue = Math.min(sortingReplay.fitness[i]);
+            if(foundBestTotalValue < bestTotalValue)
+              setBestTotalValue(foundBestTotalValue);
+          }
+          if(i >= sortingReplay.arrMutation.length - 1) {
+            setPlaying(false);
+            setSorted(true);
+            setGraphData(sortingReplay.fitness);
+          }
+        }, i * 100);
+      }
     }).catch((rejection) => {
       console.error("Could not get something back from algo : " + rejection);
       setPlaying(false);

@@ -170,8 +170,8 @@ export function geneticRangeCrossover(knapsacks, maxWeight, generations, objects
       // reproductionArray[arr].forEach(sack => fitness.push(checkFitness(sack, objects)));
       // console.log("fit " + fitness);    
       
-      
       //put best knapsacks into same length array as original
+      // eslint-disable-next-line 
       reproductionArray[arr].forEach(sack => {
         const sackFitness = checkFitness(sack, objects);
         const leastFitIndex = survivalArray[0].findIndex(item => item === Math.min(...survivalArray[0]));
@@ -204,6 +204,9 @@ export function geneticRangeCrossover(knapsacks, maxWeight, generations, objects
 
   gens--;
   
+  sortingReplay.arrMutation.push([...survivalArray[1]]);
+  sortingReplay.swapMovement.push([rangeStartIndex, rangeEndIndex]);
+  sortingReplay.fitness.push([...survivalArray[0]]);
   }
 
   return sortingReplay;

@@ -1,18 +1,31 @@
 import React from "react";
 import Chart from "react-apexcharts";
 
-const GraphKnapsack = React.memo(({graphData, graphYAxisMax}) => {
-  if(!graphYAxisMax)
-    graphYAxisMax = 1;
+const GraphKnapsack = React.memo(({graphData}) => {
+
+  let knapsackSeries = []; 
+  for(let iteration of graphData) {
+    iteration.forEach((knapsack, index) => {
+      if(!knapsackSeries[index])
+        knapsackSeries[index] = [];
+      knapsackSeries[index].push(knapsack);
+    });
+  }
+  // eslint-disable-next-line
+  knapsackSeries.map((serie, index) => {
+    knapsackSeries[index] = {
+      name: "Knapsack " + (index+1),
+      data: serie
+    }
+  })
 
   const graphOptions = {
     options: {
       chart: {
         id: "Knapsack"
       },
-      colors: ["#0AB6EC"],
       dataLabels: {
-        enabled: graphData.length < 50 ? true : false,
+        enabled: graphData.length <= 20 ? true : false,
         background: {
           enabled: true,
           foreColor: '#fff',
@@ -34,22 +47,33 @@ const GraphKnapsack = React.memo(({graphData, graphYAxisMax}) => {
         }
       },
       markers: {
-        size: graphData.length < 50 ? 0 : 4
+        size: graphData.length <= 50 ? 4 : 0
       },
       xaxis: {
-        categories: ["iterations"]
+        title: {
+          text: 'Iterations'
+        }
       },
       yaxis: {
-        max: graphYAxisMax,
-        min: 0,
-        forceNiceScale: Boolean
+        // max: graphYAxisMax,
+        // min: 0,
+        forceNiceScale: Boolean,
+        title: {
+          text: 'Value'
+        }
+      },
+      legend: {
+        position: 'top',
+        horizontalAlign: 'center',
+        floating: true,
       }
     },
     series: [
-      {
-        name: "Knapsack Value",
-        data: graphData
-      }
+      // {
+      //   name: "Knapsack Value",
+      //   data: graphData
+      // }
+      ...knapsackSeries
     ]
   };
 
