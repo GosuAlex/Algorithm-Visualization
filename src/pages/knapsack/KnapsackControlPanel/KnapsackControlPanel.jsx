@@ -39,7 +39,7 @@ const KnapsackControlPanel = ({
           onChange={e => setWeightRange(e.target.value)}
           placeholder={weightRange}
           min="10"
-          max="1000"
+          max="100"
         />
         <input
           className={[classes.Btn, classes.ValueRange].join(" ")}
@@ -55,7 +55,7 @@ const KnapsackControlPanel = ({
           onChange={e => setMaxWeight(e.target.value)}
           placeholder={maxWeight}
           min="1"
-          max="100"
+          max="1000"
         />
         <input
           className={[classes.Btn, classes.MaxValue].join(" ")}
@@ -63,7 +63,7 @@ const KnapsackControlPanel = ({
           onChange={e => setMaxItems(e.target.value)}
           placeholder={maxItems}
           min="1"
-          max="1000"
+          max="200"
         />
         <input
           className={[classes.Btn, classes.Sacks].join(" ")}
@@ -71,7 +71,7 @@ const KnapsackControlPanel = ({
           onChange={e => setKnapsacks(e.target.value)}
           placeholder={knapsacks}
           min="4"
-          max="100"
+          max="8"
         />
         <input
           className={[classes.Btn, classes.Generations].join(" ")}

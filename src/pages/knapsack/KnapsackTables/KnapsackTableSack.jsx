@@ -2,7 +2,7 @@ import React from 'react'
 
 import classes from './KnapsackTable.module.css'
 
-const KnapsackTableSack = ({knapsacks, objects, currentSack, readyForPlaying, switchKnapsack, currentIndex, swapIndex, frontIndex, sorted, initSacks, playing}) => {
+const KnapsackTableSack = ({knapsacks, objects, currentSack, readyForPlaying, switchKnapsack, swapIndex, sorted, initSacks, playing}) => {
   return (
     <div className={classes.Table}>
       <button className={[classes.Btn, classes.Empty].join(" ")} onClick={initSacks} disabled={playing || !readyForPlaying} >Initialize Sacks</button>
@@ -23,7 +23,8 @@ const KnapsackTableSack = ({knapsacks, objects, currentSack, readyForPlaying, sw
             {knapsacks[currentSack-1].map((itemIsInside, index) => (
               <tr 
                 key={index} 
-                // className={sorted ? classes.Sorted : swapIndex[0] <= index && swapIndex[1] >= index ? classes.SwapIndex : null }
+                //className={sorted ? classes.Sorted : swapIndex[0] <= index && swapIndex[1] >= index ? classes.SwapIndex : null }
+                className={sorted ? classes.Sorted : null }
               >
                 <td>{itemIsInside ? index : "-"}</td>
                 <td>{itemIsInside ? objects.weight[index] : null}</td>

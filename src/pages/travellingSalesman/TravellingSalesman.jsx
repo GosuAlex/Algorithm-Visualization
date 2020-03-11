@@ -10,6 +10,8 @@
 // Add progress round bar
 // add speed control, also check out lots of cities, it still slow
 // cities dont work. Some are not shown.
+// Can put wrong min max values, since it's onChange straight to state. Need function as mediator or validating. 
+// Write some tests.
 
 import React, { useState } from 'react'
 import { genAdjSymMatrix, algoInitRandom, algoInitGreedy, greedyImprovement, greedyRandom } from "algorithms/tsp";
@@ -23,8 +25,8 @@ import GraphLine from 'components/graph/GraphLine';
 
 const TravellingSalesman = () => {
   const [arrRoute, setArrRoute] = useState([]);
-  const [arrSize, setArrSize] = useState(10);
-  const [mileRange, setMileRange] = useState(100);
+  const [arrSize, setArrSize] = useState(20);
+  const [mileRange, setMileRange] = useState(1000);
   const [arrCities, setArrCities] = useState([]);
   const [iterations, setIterations] = useState(50);
   const [distance, setDistance] = useState();

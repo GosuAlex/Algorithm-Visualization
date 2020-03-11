@@ -1,4 +1,6 @@
 // use realtime apexchart for better performance yes?
+// loading progress. Either flat bar couple of pixels under graph or circle 360
+// show that graph is not loading realtime with gens > 200
 
 import React, { useState } from 'react'
 
@@ -20,9 +22,7 @@ const Knapsack = () => {
   const [maxWeight, setMaxWeight] = useState(100);
   const [knapsacks, setKnapsacks] = useState(4);
   const [generations, setGenerations] = useState(50);
-  const [currentIndex, setCurrentIndex] = useState(null);
   const [swapIndex, setSwapIndex] = useState([]);
-  const [frontIndex, setFrontIndex] = useState(null);
   const [playing, setPlaying] = useState(false);
   const [sorted, setSorted] = useState(false);
   const [readyForPlaying, setreadyForPlaying] = useState(false)
@@ -41,7 +41,7 @@ const Knapsack = () => {
   const initSacks = () => {
     let sacks = [];
       
-    while (sacks.length < knapsacks || sacks.length < 2) {
+    while ((sacks.length < knapsacks && sacks.length < 8) || sacks.length < 2) {
       sacks.push(createRandomKnapsack(maxWeight, objects));
     }
 
@@ -67,7 +67,9 @@ const Knapsack = () => {
         setTimeout(() => {
           setSwapIndex(sortingReplay.swapMovement[i])
           setSacks(sortingReplay.arrMutation[i])
-          setGraphData(sortingReplay.fitness.filter((item, index) => index <= i));
+
+          //if(generations <= 200)
+            setGraphData(sortingReplay.fitness.filter((item, index) => index <= i));
           
           const indexOfBest = sortingReplay.fitness[i].indexOf(Math.max(...sortingReplay.fitness[i]));
           if(sortingReplay.fitness[i][indexOfBest] > foundBestTotalValue) {

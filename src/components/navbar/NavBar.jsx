@@ -35,7 +35,7 @@ const NavBar = () => {
         </div>
         <button className={[classes.ResetIcon, classes.Icon].join(" ")} onClick={refreshPage} >
         {/* <button className={[classes.ResetIcon, classes.Icon].join(" ")} onClick={() => history.push(history.location.pathname, null)} > */}
-          Reset
+          Reset / Stop
         </button>
       </div>
     </nav>

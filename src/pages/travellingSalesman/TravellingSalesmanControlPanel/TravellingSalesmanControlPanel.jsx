@@ -17,7 +17,7 @@ const TravellingSalesmanControlPanel = ({setArrSize, setMileRange, newBest, read
           onChange={e => setArrSize(e.target.value)}
           placeholder={placeholderNumber}
           min="10"
-          max="500"
+          max="200"
         />
         <input className={[classes.Btn, classes.MileRange].join(" ")} type="number" onChange={e => setMileRange(e.target.value)} placeholder={mileRange} min="10" max="10000" />
         <input className={[classes.Btn, classes.Iterations].join(" ")} type="number" onChange={e => setIterations(e.target.value)} placeholder={iterations} min="1" max="10000" />
