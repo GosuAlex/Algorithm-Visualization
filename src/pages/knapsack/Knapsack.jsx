@@ -1,6 +1,7 @@
 // use realtime apexchart for better performance yes?
 // loading progress. Either flat bar couple of pixels under graph or circle 360
 // show that graph is not loading realtime with gens > 200
+// add Best knapsack tabel on 0 page on the table.
 
 import React, { useState } from 'react'
 
