@@ -16,7 +16,8 @@ const KnapsackControlPanel = ({
   generations,
   playing,
   readyForPlaying,
-  optimize
+  optimize,
+  bestTotal
 }) => {
   return (
     <div className={classes.ControlPanel}>
@@ -90,13 +91,13 @@ const KnapsackControlPanel = ({
 
       <div className={classes.ControlColumn}>
         <label className={[classes.Sign, classes.Best].join(" ")} >
-          2000
+          {bestTotal.weight}
         </label>
         <label className={[classes.Sign, classes.Best].join(" ")} >
-          2000
+          {bestTotal.value}
         </label>
         <label className={[classes.Sign, classes.Best].join(" ")} >
-          2000
+          {bestTotal.numberOfItems}
         </label>
       </div>
     </div>

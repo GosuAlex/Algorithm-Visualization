@@ -39,7 +39,7 @@ function checkFitness(knapsack, objects) {
   return fitness;
 }
 
-function checkWeight(knapsack, objects) {
+export function checkWeight(knapsack, objects) {
   let weight = 0;
   
   knapsack.forEach((item, index) => {

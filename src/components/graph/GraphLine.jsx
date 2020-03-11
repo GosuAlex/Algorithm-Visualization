@@ -2,7 +2,6 @@ import React from "react";
 import Chart from "react-apexcharts";
 
 const GraphLine = React.memo(({graphData, graphYAxisMax, cityNames}) => {
-  console.log(cityNames);
   if(!graphYAxisMax)
     graphYAxisMax = 1;
 

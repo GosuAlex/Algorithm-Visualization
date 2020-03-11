@@ -1,3 +1,5 @@
+// use realtime apexchart for better performance yes?
+
 import React, { useState } from 'react'
 
 import classes from "./Knapsack.module.css";
@@ -5,7 +7,7 @@ import KnapsackControlPanel from './KnapsackControlPanel/KnapsackControlPanel';
 import KnapsackTableItemPool from './KnapsackTables/KnapsackTableItemPool';
 import KnapsackTableSack from './KnapsackTables/KnapsackTableSack';
 
-import { createRandomObjects, createRandomKnapsack, geneticRangeCrossover } from "algorithms/knapsack";
+import { createRandomObjects, createRandomKnapsack, geneticRangeCrossover, checkWeight } from "algorithms/knapsack";
 import GraphKnapsack from 'components/graph/GraphKnapsack';
 
 const Knapsack = () => {
@@ -19,37 +21,37 @@ const Knapsack = () => {
   const [knapsacks, setKnapsacks] = useState(4);
   const [generations, setGenerations] = useState(50);
   const [currentIndex, setCurrentIndex] = useState(null);
-  const [swapIndex, setSwapIndex] = useState(null);
+  const [swapIndex, setSwapIndex] = useState([]);
   const [frontIndex, setFrontIndex] = useState(null);
   const [playing, setPlaying] = useState(false);
   const [sorted, setSorted] = useState(false);
   const [readyForPlaying, setreadyForPlaying] = useState(false)
   const [graphData, setGraphData] = useState([])
-  const [sacksTotalValue, setSacksTotalValue] = useState([[],[],[],[]])
-  const [bestTotalValue, setBestTotalValue] = useState(0)
+  const [bestTotal, setBestTotal] = useState({weight: 0, value: 0, numberOfItems: 0})
   
   const randomize = () => {
     const randomizedObjects = createRandomObjects(maxItems, valueRange, weightRange);
 
     setObjects(randomizedObjects);
     setreadyForPlaying(true);
+    setBestTotal({weight: 0, value: 0, numberOfItems: 0});
+    initSacks();
   }
 
   const initSacks = () => {
     let sacks = [];
-    for(let i = knapsacks ; i > 0 ; i--) {
+      
+    while (sacks.length < knapsacks || sacks.length < 2) {
       sacks.push(createRandomKnapsack(maxWeight, objects));
     }
 
+    setCurrentSack(1);
     setSacks(sacks);
   }
 
   const optimize = () => {
     setPlaying(true);
-
-    //const evolvedKnapsacks = geneticRangeCrossover([...sacks], maxWeight, generations, objects);
-    // setSacks(evolvedKnapsacks);
-    // setPlaying(false);
+    setSorted(false);
 
     let sortingReplay = {};
     let runAlgo = new Promise((resolve, reject) => {
@@ -59,17 +61,26 @@ const Knapsack = () => {
     });
 
     runAlgo.then(() => {
-      let foundBestTotalValue = Infinity;
+      let foundBestTotalValue = 0;
       for(let i in sortingReplay.arrMutation) {
         // eslint-disable-next-line 
         setTimeout(() => {
           setSwapIndex(sortingReplay.swapMovement[i])
           setSacks(sortingReplay.arrMutation[i])
-          setSacksTotalValue(sortingReplay.fitness[i])
-          if(Math.min(sortingReplay.fitness[i]) < foundBestTotalValue) {
-            foundBestTotalValue = Math.min(sortingReplay.fitness[i]);
-            if(foundBestTotalValue < bestTotalValue)
-              setBestTotalValue(foundBestTotalValue);
+          setGraphData(sortingReplay.fitness.filter((item, index) => index <= i));
+          
+          const indexOfBest = sortingReplay.fitness[i].indexOf(Math.max(...sortingReplay.fitness[i]));
+          if(sortingReplay.fitness[i][indexOfBest] > foundBestTotalValue) {
+            foundBestTotalValue = sortingReplay.fitness[i][indexOfBest];
+            if(foundBestTotalValue > bestTotal.value) {
+              const bestKnapsack = {
+                weight: checkWeight(sortingReplay.arrMutation[i][indexOfBest], objects),
+                value: sortingReplay.fitness[i][indexOfBest],
+                numberOfItems: sortingReplay.arrMutation[i][indexOfBest].reduce((total, item) => total + item)
+              }
+              //if(bestKnapsack.weight >= maxWeight)
+                setBestTotal(bestKnapsack);
+            }
           }
           if(i >= sortingReplay.arrMutation.length - 1) {
             setPlaying(false);
@@ -87,7 +98,7 @@ const Knapsack = () => {
 
   const switchKnapsack = (leftOrRight) => {
     const newCurrentSack = leftOrRight === "left" ? currentSack - 1 : currentSack + 1
-    if(newCurrentSack < 1 || knapsacks < newCurrentSack)
+    if(newCurrentSack < 1 || sacks.length < newCurrentSack)
       return;
     setCurrentSack(newCurrentSack);
   }
@@ -109,6 +120,7 @@ const Knapsack = () => {
           switchKnapsack={switchKnapsack}
           objects={objects}
           swapIndex={swapIndex}
+          sorted={sorted}
         />
       </section>
       <section className={classes.Control}>
@@ -133,6 +145,7 @@ const Knapsack = () => {
           setKnapsacks={setKnapsacks}
           generations={generations}
           setGenerations={setGenerations}
+          bestTotal={bestTotal}
         />
       </section>
       <div className={classes.WarningScreenSize}>

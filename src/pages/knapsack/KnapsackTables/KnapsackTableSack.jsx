@@ -23,17 +23,7 @@ const KnapsackTableSack = ({knapsacks, objects, currentSack, readyForPlaying, sw
             {knapsacks[currentSack-1].map((itemIsInside, index) => (
               <tr 
                 key={index} 
-                className={
-                  frontIndex === index
-                    ? classes.FrontIndex
-                    : swapIndex === index
-                      ? classes.SwapIndex
-                      : currentIndex === index
-                        ? classes.CurrentIndex
-                        : sorted
-                          ? classes.Sorted
-                          : null
-                }
+                // className={sorted ? classes.Sorted : swapIndex[0] <= index && swapIndex[1] >= index ? classes.SwapIndex : null }
               >
                 <td>{itemIsInside ? index : "-"}</td>
                 <td>{itemIsInside ? objects.weight[index] : null}</td>

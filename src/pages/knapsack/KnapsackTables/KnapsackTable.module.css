@@ -139,6 +139,7 @@ tr:nth-child(even) {
 }
 
 .SwapIndex {
+  /* animation: swapping 10s ease; */
   background-color: var(--red) !important;
 }
 .FrontIndex {
@@ -155,6 +156,15 @@ tr:nth-child(even) {
   }
   40% {
     background-color: var(--green);
+  }
+}
+
+@keyframes swapping {
+  0% {
+    background-color: var(--red);
+  }
+  100% {
+
   }
 }
 
